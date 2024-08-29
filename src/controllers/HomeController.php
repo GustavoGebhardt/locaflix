@@ -9,7 +9,7 @@ class HomeController
 {
     public function index(Request $request, Response $response, array $args)
     {
-        $response->getBody()->write("Hello, Slim Framework!");
+        $response->getBody()->write("Home");
         return $response;
     }
 }
