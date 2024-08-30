@@ -12,4 +12,8 @@ $app->get('/filme/{id}', [FilmeController::class, 'findOne']);
 $app->put('/filme/{id}', [FilmeController::class, 'update']);
 $app->delete('/filme/{id}', [FilmeController::class, 'remove']);
 
-$app->get('/diretor', [DiretorController::class, 'index']);
+$app->post('/diretor', [DiretorController::class, 'create']);
+$app->get('/diretor', [DiretorController::class, 'findAll']);
+$app->get('/diretor/{id}', [DiretorController::class, 'findOne']);
+$app->put('/diretor/{id}', [DiretorController::class, 'update']);
+$app->delete('/diretor/{id}', [DiretorController::class, 'remove']);

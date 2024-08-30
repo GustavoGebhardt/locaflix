@@ -10,7 +10,7 @@ class FilmeService extends Conection
     public function createFilme($id_diretor, $id_faixa_etaria, $nome, $lancamento)
     {
         $uuid4 = Uuid::uuid4();
-        $query = sprintf("INSERT INTO filme(id_filme, id_diretor, id_faixa_etaria, nome, lancamento) VALUES ('%s', '%s', '%s', '%s', '%s');", $uuid4, $id_diretor, $id_faixa_etaria, $nome, $lancamento);
+        $query = "INSERT INTO filme(id_filme, id_diretor, id_faixa_etaria, nome, lancamento) VALUES ('$uuid4', '$id_diretor', '$id_faixa_etaria', '$nome', '$lancamento');";
         $filme = $this->pdo
             ->query($query)
             ->fetchAll(\PDO::FETCH_ASSOC);
@@ -27,7 +27,7 @@ class FilmeService extends Conection
 
     public function getFilme($id)
     {
-        $query = sprintf("SELECT * FROM filme WHERE id_filme = '%s';", $id);
+        $query = "SELECT * FROM filme WHERE id_filme = '$id';";
         $filme = $this->pdo
             ->query($query)
             ->fetchAll(\PDO::FETCH_ASSOC);
@@ -36,7 +36,7 @@ class FilmeService extends Conection
 
     public function updateFilme($id, $id_diretor, $id_faixa_etaria, $nome, $lancamento)
     {
-        $query = sprintf("UPDATE filme SET id_diretor = '$id_diretor', id_faixa_etaria = '$id_faixa_etaria', nome = '$nome', lancamento = '$lancamento' WHERE id_filme = '$id';");
+        $query = "UPDATE filme SET id_diretor = '$id_diretor', id_faixa_etaria = '$id_faixa_etaria', nome = '$nome', lancamento = '$lancamento' WHERE id_filme = '$id';";
         $filme = $this->pdo
             ->query($query)
             ->fetchAll(\PDO::FETCH_ASSOC);
@@ -45,7 +45,7 @@ class FilmeService extends Conection
 
     public function removeFilme($id)
     {
-        $query = sprintf("DELETE FROM filme WHERE id_filme = '%s';", $id);
+        $query = "DELETE FROM filme WHERE id_filme = '$id';";
         $filme = $this->pdo
             ->query($query)
             ->fetchAll(\PDO::FETCH_ASSOC);
