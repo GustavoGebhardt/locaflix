@@ -4,9 +4,9 @@ namespace src\controllers;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use src\services\DiretorService;
+use src\services\ClienteService;
 
-class DiretorController extends DiretorService
+class ClienteController extends ClienteService
 {
     public function create(Request $request, Response $response, array $args)
     {
@@ -14,24 +14,25 @@ class DiretorController extends DiretorService
         $data = json_decode($request->getBody(), true);
 
         $nome = $data['nome'];
+        $email = $data['email'];
 
-        $diretor = $this->createDiretor($nome);
-        $response->getBody()->write(json_encode($diretor));
+        $cliente = $this->createCliente($nome, $email);
+        $response->getBody()->write(json_encode($cliente));
         return $response->withHeader('Content-Type', 'application/json');
     }
 
     public function findAll(Request $request, Response $response, array $args)
     {
-        $diretors = $this->getDiretores();
-        $response->getBody()->write(json_encode($diretors));
+        $clientes = $this->getClientes();
+        $response->getBody()->write(json_encode($clientes));
         return $response->withHeader('Content-Type', 'application/json');
     }
 
     public function findOne(Request $request, Response $response, array $args)
     {
         $id = $args['id'];
-        $diretor = $this->getDiretor($id);
-        $response->getBody()->write(json_encode($diretor));
+        $cliente = $this->getCliente($id);
+        $response->getBody()->write(json_encode($cliente));
         return $response->withHeader('Content-Type', 'application/json');
     }
 
@@ -42,17 +43,18 @@ class DiretorController extends DiretorService
         $data = json_decode($request->getBody(), true);
 
         $nome = $data['nome'];
+        $email = $data['email'];
 
-        $diretor = $this->updateDiretor($id, $nome);
-        $response->getBody()->write(json_encode($diretor));
+        $cliente = $this->updateCliente($id, $nome, $email);
+        $response->getBody()->write(json_encode($cliente));
         return $response->withHeader('Content-Type', 'application/json');
     }
 
     public function remove(Request $request, Response $response, array $args)
     {
         $id = $args['id'];
-        $diretor = $this->removeDiretor($id);
-        $response->getBody()->write(json_encode($diretor));
+        $cliente = $this->removeCliente($id);
+        $response->getBody()->write(json_encode($cliente));
         return $response->withHeader('Content-Type', 'application/json');
     }
 }
