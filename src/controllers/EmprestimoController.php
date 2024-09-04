@@ -15,10 +15,11 @@ class EmprestimoController extends EmprestimoService
 
         $id_cliente = $data['id_cliente'];
         $id_status = $data['id_status'];
+        $id_filme = $data['id_filme'];
         $data_emprestimo = $data['data_emprestimo'];
         $data_devolucao = $data['data_devolucao'];
 
-        $emprestimo = $this->createEmprestimo($id_cliente, $id_status, $data_emprestimo, $data_devolucao);
+        $emprestimo = $this->createEmprestimo($id_cliente, $id_status, $id_filme, $data_emprestimo, $data_devolucao);
         $response->getBody()->write(json_encode($emprestimo));
         return $response->withHeader('Content-Type', 'application/json');
     }
@@ -46,10 +47,11 @@ class EmprestimoController extends EmprestimoService
 
         $id_cliente = $data['id_cliente'];
         $id_status = $data['id_status'];
+        $id_filme = $data['id_filme'];
         $data_emprestimo = $data['data_emprestimo'];
         $data_devolucao = $data['data_devolucao'];
 
-        $emprestimo = $this->updateEmprestimo($id, $id_cliente, $id_status, $data_emprestimo, $data_devolucao);
+        $emprestimo = $this->updateEmprestimo($id, $id_cliente, $id_status, $id_filme, $data_emprestimo, $data_devolucao);
         $response->getBody()->write(json_encode($emprestimo));
         return $response->withHeader('Content-Type', 'application/json');
     }
