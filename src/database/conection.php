@@ -1,5 +1,6 @@
 <?php
 
+//Conexão banco de dados
 namespace src\database;
 
 abstract class Conection
@@ -19,6 +20,7 @@ abstract class Conection
 
         $dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
 
+        //Inicio da comunicação PDO
         $this->pdo = new \PDO($dsn, $user, $password);
         $this->pdo->setAttribute(
             \PDO::ATTR_ERRMODE,

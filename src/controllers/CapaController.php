@@ -4,34 +4,34 @@ namespace src\controllers;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use src\services\GeneroService;
+use src\services\CapaService;
 
-class GeneroController extends GeneroService
+class CapaController extends CapaService
 {
     public function create(Request $request, Response $response, array $args)
     {
         $data = $request->getBody();
         $data = json_decode($request->getBody(), true);
 
-        $tipo = $data['tipo'];
+        $caminho = $data['caminho'];
 
-        $genero = $this->createGenero($tipo);
-        $response->getBody()->write(json_encode($genero));
+        $capa = $this->createCapa($caminho);
+        $response->getBody()->write(json_encode($capa));
         return $response->withHeader('Content-Type', 'application/json');
     }
 
     public function findAll(Request $request, Response $response, array $args)
     {
-        $generos = $this->getGeneros();
-        $response->getBody()->write(json_encode($generos));
+        $capas = $this->getCapas();
+        $response->getBody()->write(json_encode($capas));
         return $response->withHeader('Content-Type', 'application/json');
     }
 
     public function findOne(Request $request, Response $response, array $args)
     {
         $id = $args['id'];
-        $genero = $this->getGenero($id);
-        $response->getBody()->write(json_encode($genero));
+        $capa = $this->getCapa($id);
+        $response->getBody()->write(json_encode($capa));
         return $response->withHeader('Content-Type', 'application/json');
     }
 
@@ -41,18 +41,18 @@ class GeneroController extends GeneroService
         $data = $request->getBody();
         $data = json_decode($request->getBody(), true);
 
-        $tipo = $data['tipo'];
+        $caminho = $data['caminho'];
 
-        $genero = $this->updateGenero($id, $tipo);
-        $response->getBody()->write(json_encode($genero));
+        $capa = $this->updateCapa($id, $caminho);
+        $response->getBody()->write(json_encode($capa));
         return $response->withHeader('Content-Type', 'application/json');
     }
 
     public function remove(Request $request, Response $response, array $args)
     {
         $id = $args['id'];
-        $genero = $this->removeGenero($id);
-        $response->getBody()->write(json_encode($genero));
+        $capa = $this->removeCapa($id);
+        $response->getBody()->write(json_encode($capa));
         return $response->withHeader('Content-Type', 'application/json');
     }
 }
